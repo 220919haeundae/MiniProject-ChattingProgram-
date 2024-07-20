@@ -1,50 +1,68 @@
-<mxfile host="app.diagrams.net" modified="2024-07-19T08:07:47.134Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36" etag="-eBHA69qIA0MTZ-qVZzq" version="24.7.1" type="device">
+<mxfile host="app.diagrams.net" modified="2024-07-20T15:06:37.227Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36 Edg/126.0.0.0" etag="IPwqb8mJbR46MKYUYaEL" version="24.7.2" type="device">
   <diagram name="페이지-1" id="Z1S-KfGZleMHR6X-gFGn">
-    <mxGraphModel dx="1434" dy="780" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1631" dy="1025" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" background="none" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="n32i5Z1ZwP20C322o2zh-1" value="ChatClient" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="280" y="80" width="240" height="120" as="geometry" />
+          <mxGeometry x="480" y="160" width="240" height="160" as="geometry" />
         </mxCell>
-        <mxCell id="n32i5Z1ZwP20C322o2zh-2" value="+ nickName: String&lt;div&gt;+ dis: DataInputStream&lt;br&gt;&lt;/div&gt;&lt;div&gt;+ dos: DataOutputStream&lt;/div&gt;&lt;div&gt;+ socket: Socket&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="n32i5Z1ZwP20C322o2zh-1" vertex="1">
+        <mxCell id="n32i5Z1ZwP20C322o2zh-2" value="+ nickName: String&lt;div&gt;+ ois: ObjectInputStream&lt;br&gt;&lt;/div&gt;&lt;div&gt;+ oos: ObjectOutputStream&lt;/div&gt;&lt;div&gt;+ socket: Socket&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="n32i5Z1ZwP20C322o2zh-1" vertex="1">
           <mxGeometry y="26" width="240" height="64" as="geometry" />
         </mxCell>
         <mxCell id="n32i5Z1ZwP20C322o2zh-3" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" parent="n32i5Z1ZwP20C322o2zh-1" vertex="1">
           <mxGeometry y="90" width="240" height="8" as="geometry" />
         </mxCell>
-        <mxCell id="n32i5Z1ZwP20C322o2zh-4" value="+ receive(): void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="n32i5Z1ZwP20C322o2zh-1" vertex="1">
-          <mxGeometry y="98" width="240" height="22" as="geometry" />
+        <mxCell id="n32i5Z1ZwP20C322o2zh-4" value="+ receive(): void&lt;div&gt;+ connectToServer() : void&lt;/div&gt;&lt;div&gt;+ disconnectServer() : void&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="n32i5Z1ZwP20C322o2zh-1" vertex="1">
+          <mxGeometry y="98" width="240" height="62" as="geometry" />
         </mxCell>
         <mxCell id="n32i5Z1ZwP20C322o2zh-5" value="ChatSocket" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="280" y="240" width="240" height="240" as="geometry" />
+          <mxGeometry x="480" y="400" width="240" height="230" as="geometry" />
         </mxCell>
-        <mxCell id="n32i5Z1ZwP20C322o2zh-6" value="&lt;div&gt;+ chatServer: ChatServer&lt;/div&gt;+ nickName: String&lt;div&gt;+ dis: DataInputStream&lt;br&gt;&lt;/div&gt;&lt;div&gt;+ dos: DataOutputStream&lt;/div&gt;&lt;div&gt;+ socket: Socket&lt;/div&gt;&lt;div&gt;+ clientIP: String&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="n32i5Z1ZwP20C322o2zh-5" vertex="1">
-          <mxGeometry y="26" width="240" height="94" as="geometry" />
+        <mxCell id="n32i5Z1ZwP20C322o2zh-6" value="&lt;div&gt;+ chatServer: ChatServer&lt;/div&gt;+ nickName: String&lt;div&gt;+ ois: ObjectInputStream&lt;br&gt;&lt;/div&gt;&lt;div&gt;+ oos: ObjectOutputStream&lt;/div&gt;&lt;div&gt;+ socket: Socket&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="n32i5Z1ZwP20C322o2zh-5" vertex="1">
+          <mxGeometry y="26" width="240" height="84" as="geometry" />
         </mxCell>
         <mxCell id="n32i5Z1ZwP20C322o2zh-7" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" parent="n32i5Z1ZwP20C322o2zh-5" vertex="1">
-          <mxGeometry y="120" width="240" height="8" as="geometry" />
+          <mxGeometry y="110" width="240" height="8" as="geometry" />
         </mxCell>
         <mxCell id="n32i5Z1ZwP20C322o2zh-13" value="+ ChatSocket(chatServer: ChatServer, socket: Socket)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="n32i5Z1ZwP20C322o2zh-5" vertex="1">
-          <mxGeometry y="128" width="240" height="32" as="geometry" />
+          <mxGeometry y="118" width="240" height="32" as="geometry" />
         </mxCell>
         <mxCell id="n32i5Z1ZwP20C322o2zh-14" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" parent="n32i5Z1ZwP20C322o2zh-5" vertex="1">
-          <mxGeometry y="160" width="240" height="8" as="geometry" />
+          <mxGeometry y="150" width="240" height="8" as="geometry" />
         </mxCell>
         <mxCell id="n32i5Z1ZwP20C322o2zh-8" value="+ receive(): void&lt;div&gt;+ send(String sender, String message) : void&lt;/div&gt;&lt;div&gt;+ close(): void&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="n32i5Z1ZwP20C322o2zh-5" vertex="1">
-          <mxGeometry y="168" width="240" height="72" as="geometry" />
+          <mxGeometry y="158" width="240" height="72" as="geometry" />
         </mxCell>
         <mxCell id="n32i5Z1ZwP20C322o2zh-9" value="ChatServer" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="280" y="520" width="240" height="190" as="geometry" />
+          <mxGeometry x="80" y="160" width="240" height="200" as="geometry" />
         </mxCell>
-        <mxCell id="n32i5Z1ZwP20C322o2zh-10" value="+ serverSocket: ServerSocket&lt;div&gt;+ chatRoom: Map&amp;lt;String, ChatSocket&amp;gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;+ threadPool: ExecutorService&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="n32i5Z1ZwP20C322o2zh-9" vertex="1">
-          <mxGeometry y="26" width="240" height="54" as="geometry" />
+        <mxCell id="n32i5Z1ZwP20C322o2zh-10" value="+ serverSocket: ServerSocket&lt;div&gt;+ chattingRoom: Map&amp;lt;String, ChatSocket&amp;gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;+ threadPool: ExecutorService&lt;/div&gt;&lt;div&gt;+ thread: Thread&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="n32i5Z1ZwP20C322o2zh-9" vertex="1">
+          <mxGeometry y="26" width="240" height="74" as="geometry" />
         </mxCell>
         <mxCell id="n32i5Z1ZwP20C322o2zh-11" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" parent="n32i5Z1ZwP20C322o2zh-9" vertex="1">
-          <mxGeometry y="80" width="240" height="8" as="geometry" />
+          <mxGeometry y="100" width="240" height="8" as="geometry" />
         </mxCell>
-        <mxCell id="n32i5Z1ZwP20C322o2zh-12" value="+ sendToAll(String sender, String message): void&lt;div&gt;+ addChatSocket(ChatSocket): void&lt;/div&gt;&lt;div&gt;+ removeChatSocket(ChatSocket): void&lt;/div&gt;&lt;div&gt;+ startServer(): void&lt;/div&gt;&lt;div&gt;+ closeServer(): void&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="n32i5Z1ZwP20C322o2zh-9" vertex="1">
-          <mxGeometry y="88" width="240" height="102" as="geometry" />
+        <mxCell id="n32i5Z1ZwP20C322o2zh-12" value="+ startServer(): void&lt;div&gt;+ sendToAll(&lt;span style=&quot;background-color: initial;&quot;&gt;msg :&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;Message) : void&lt;/span&gt;&lt;/div&gt;&lt;div&gt;+ stopServer(): void&lt;/div&gt;&lt;div&gt;+ addChatSocket(socket : ChatSocket)&lt;/div&gt;&lt;div&gt;+ removeChatSocket(socket : ChatSocket)&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="n32i5Z1ZwP20C322o2zh-9" vertex="1">
+          <mxGeometry y="108" width="240" height="92" as="geometry" />
+        </mxCell>
+        <mxCell id="qE5EfWyhuDdfEKizhXet-5" value="Message" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="80" y="400" width="240" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="qE5EfWyhuDdfEKizhXet-6" value="&lt;div&gt;+ nickName: String&lt;/div&gt;&lt;div&gt;+ message: String&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="qE5EfWyhuDdfEKizhXet-5">
+          <mxGeometry y="26" width="240" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="qE5EfWyhuDdfEKizhXet-7" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="qE5EfWyhuDdfEKizhXet-5">
+          <mxGeometry y="70" width="240" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="qE5EfWyhuDdfEKizhXet-8" value="+ Message(nickName: String, message: String)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="qE5EfWyhuDdfEKizhXet-5">
+          <mxGeometry y="78" width="240" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="qE5EfWyhuDdfEKizhXet-9" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="qE5EfWyhuDdfEKizhXet-5">
+          <mxGeometry y="110" width="240" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="qE5EfWyhuDdfEKizhXet-10" value="+ toString() : String" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="qE5EfWyhuDdfEKizhXet-5">
+          <mxGeometry y="118" width="240" height="32" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
