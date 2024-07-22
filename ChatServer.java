@@ -30,25 +30,25 @@ public class ChatServer {
 		Scanner scanner = new Scanner(System.in);
 		ChatServer server = new ChatServer();
 		server.startServer();
-		
-		
+
+
 		while(true) {
 			System.out.println("서버를 종료하려면 \"q\"를 입력하세요.");
 			String key = scanner.nextLine();
 			if(key.equals("q")) break;
 		}
-		
-		
+
+
 		scanner.close();
 		server.stopServer();
-		
+
 	}
-	
+
 	public void startServer() {
 		try {
 			serverSocket = new ServerSocket(50001);
 			System.out.println("서버 시작됨");
-			
+
 			thread.start();
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -62,14 +62,14 @@ public class ChatServer {
 			cs.send(msg);
 		}
 	}
-	
+
 	public void stopServer() {
 		// 클라이언트 접속 요청 수락 중단
 		thread.interrupt();
-		
+
 		// 모든 채팅소켓 실행 종료
 		chattingRoom.values().stream().forEach(cs -> cs.close());
-		
+
 		// 서버소켓 닫음
 		try {
 			threadPool.shutdownNow();
@@ -78,7 +78,7 @@ public class ChatServer {
 			e.printStackTrace();
 		}
 		System.out.println("서버가 종료되었습니다.");
-		
+
 	}
 	// 클라이언트 채팅룸 입장 
 	public void addChatSocket(ChatSocket socket) {
@@ -86,7 +86,7 @@ public class ChatServer {
 		chattingRoom.put(key, socket);
 		System.out.println("입장 : " + key);
 		System.out.println("현재 채팅방 인원 : " + chattingRoom.size() + "명");
-		
+
 	}
 	// 클라이언트 채팅룸 퇴장
 	public void removeChatSocket(ChatSocket socket) {

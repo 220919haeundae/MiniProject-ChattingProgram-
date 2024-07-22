@@ -11,14 +11,14 @@ public class ChatSocket {
 	Socket socket;
 	ObjectInputStream ois;
 	ObjectOutputStream oos;
-	
+
 	public ChatSocket(ChatServer chatServer, Socket socket) {
 		this.chatServer = chatServer;
 		this.socket = socket;
 		try {
 			ois = new ObjectInputStream(socket.getInputStream());
 			oos = new ObjectOutputStream(socket.getOutputStream());
-			
+
 			// 클라이언트의 채팅네임 정보 저장
 			Message msg = (Message) ois.readObject();
 			nickName = msg.nickName;
@@ -30,7 +30,7 @@ public class ChatSocket {
 			System.out.println("ChatSocket 생성 중 입출력 객체 생성 실패");
 		} catch(ClassNotFoundException e) {}
 	} 
-	
+
 	public void receive() {
 		// 채팅룸 입장
 		chatServer.addChatSocket(this);
@@ -39,11 +39,29 @@ public class ChatSocket {
 			try {
 				while(true) {
 					Message msg = (Message)ois.readObject();
-					if(this.nickName.equals(msg.nickName)) {
-						chatServer.sendToAll(msg);
+					
+					
+					if(msg.targetUser != null) {
+						
+						// targetUser가 있는 경우
+						if(!msg.targetUser.equals(nickName)) {
+							chatServer.chattingRoom.get(msg.targetUser).send(msg);
+						} else {
+							send(msg);
+						}
+						
 					} else {
-						this.send(msg);
+						
+						// targetUser가 없는 경우
+						if(msg.nickName.equals(this.nickName)) {
+							chatServer.sendToAll(msg);
+						} else {
+							send(msg);
+						}
+						
 					}
+					
+					
 				}
 			}catch(IOException e) {
 				// 채팅 중 예외 발생 시 채팅소켓 객체 제거
@@ -53,7 +71,7 @@ public class ChatSocket {
 			}
 		});
 	}
-	
+
 	public void send(Message msg) {
 		try {
 			oos.writeObject(msg);
