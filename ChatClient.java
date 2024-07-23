@@ -18,25 +18,26 @@ public class ChatClient {
 		socket = new Socket("localhost", 50001);
 	}
 	// 메시지 수신 기능을 별도 스레드에서 처리
+
 	public void receive() {
 		Thread thread = new Thread(() -> {
 			try {
 				ois = new ObjectInputStream(socket.getInputStream());
 				while(true) {
 					Message msg = (Message) ois.readObject();
+					String targetUser = msg.targetUser;
 					
-					if(msg.targetUser != null) {
-						
+					if(targetUser != null) {
 						System.out.println("(귓속말) " + msg);
-						
 					} else {
 						
 						if(msg.message.equals("님이 입장하셨습니다.") ||msg.message.equals("님이 퇴장하셨습니다.")) {
 							System.out.println(msg.nickName+msg.message);
+						} else if(msg.message.equals("님은 현재 채팅방에 존재하지 않습니다.")) {
+							System.out.println(msg.nickName + msg.message);
 						} else {
 							System.out.println(msg);
 						}
-						
 					}
 				}
 			} catch (SocketException e) {
@@ -46,24 +47,35 @@ public class ChatClient {
 		thread.start();
 	}
 	
+	// 귓속말 전환 메소드
 	public void psrMessage() {
-		System.out.print("귓속말 상대의 닉네임을 입력해주세요: ");
-		String targetUser = scanner.nextLine();
 		System.out.println("귓속말로 전환");
+		while(true) {
+			System.out.print("귓속말 상대의 닉네임을 입력해주세요: ");
+			String targetUser = scanner.nextLine();
+			if(psrMessage1(targetUser)) {
+				break;
+			}
+		}
+	}
+	
+	public boolean psrMessage1(String targetUser) {
 		while(true) {
 			String message = scanner.nextLine();
 			if(message.length() == 4 && message.equals("/전체말")) {
 				System.out.println("전체말로 전환");
-				break;
-			}
+				return true;
+			} else if(message.length() == 4 && message.equals("/귓속말"))
+				return false;
 			
 			try {
 				oos.writeObject(new Message(nickName, message, targetUser));
+				oos.flush();
 			} catch (IOException e) {
 			}
-
 		}
 	}
+
 
 	public void disconnectServer() throws IOException {
 		ois.close();
@@ -97,6 +109,7 @@ public class ChatClient {
 				}
 				if(message.equals("q")) break;
 				cc.oos.writeObject(new Message(cc.nickName, message));
+				cc.oos.flush();
 			}
 			cc.disconnectServer();
 		} catch(IOException e) {}

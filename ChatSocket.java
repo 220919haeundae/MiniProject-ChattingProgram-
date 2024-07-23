@@ -41,16 +41,23 @@ public class ChatSocket {
 					Message msg = (Message)ois.readObject();
 					
 					
+					
 					if(msg.targetUser != null) {
+
+						// 귓속말 대상이 채팅방에 없을 경우 대응 클라이언트에게 부재 메세지 발신
+						if(chatServer.chattingRoom.get(msg.targetUser) == null) {
+							send(new Message(msg.targetUser, "님은 현재 채팅방에 존재하지 않습니다."));
+							continue;
+						} 
 						
 						// targetUser가 있는 경우
-						if(!msg.targetUser.equals(nickName)) {
-							chatServer.chattingRoom.get(msg.targetUser).send(msg);
-						} else {
+						if(msg.targetUser.equals(nickName)) {
 							send(msg);
+						} else {
+							chatServer.chattingRoom.get(msg.targetUser).send(msg);
 						}
 						
-					} else {
+					} else if(msg.targetUser == null) {
 						
 						// targetUser가 없는 경우
 						if(msg.nickName.equals(this.nickName)) {
