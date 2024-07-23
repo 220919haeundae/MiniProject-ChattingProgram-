@@ -20,7 +20,21 @@ public class ChatSocket {
 			oos = new ObjectOutputStream(socket.getOutputStream());
 
 			// 클라이언트의 채팅네임 정보 저장
-			Message msg = (Message) ois.readObject();
+			
+			while(true) {
+				Message msg = (Message) ois.readObject();
+				Message answer = chatServer.searchNickName(msg);
+				if(answer.message.equals("사용중인 닉네임")) {
+					oos.writeObject(answer);
+					oos.flush();
+					continue;
+				} else if(answer.message.equals("사용 가능한 닉네임")) {
+					oos.writeObject(answer);
+					oos.flush();
+					break;
+				}
+			}
+			Message msg = (Message)ois.readObject();
 			nickName = msg.nickName;
 			// 채팅룸 입장 직전 기존 채팅룸 유저에게 유저 입장 알림
 			chatServer.sendToAll(msg);

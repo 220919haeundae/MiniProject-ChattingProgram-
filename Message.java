@@ -7,6 +7,10 @@ public class Message implements Serializable {
 	String message;
 	String targetUser;
 
+	public Message(String nickName) {
+		this.nickName = nickName;
+	}
+	
 	public Message(String nickName, String message) {
 		this.nickName = nickName;
 		this.message = message;

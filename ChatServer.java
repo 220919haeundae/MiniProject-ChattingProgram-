@@ -63,6 +63,12 @@ public class ChatServer {
 		}
 	}
 
+	public Message searchNickName(Message msg) {
+		if(chattingRoom.containsKey(msg.nickName)) {
+			return new Message(msg.nickName, "사용중인 닉네임");
+		} else return new Message(msg.nickName, "사용 가능한 닉네임");
+	}
+	
 	public void stopServer() {
 		// 클라이언트 접속 요청 수락 중단
 		thread.interrupt();

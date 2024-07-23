@@ -13,16 +13,46 @@ public class ChatClient {
 	ObjectInputStream ois;
 	ObjectOutputStream oos;
 	Scanner scanner;
+	Thread receiveThread;
 
 	public void connectToServer() throws IOException {
 		socket = new Socket("localhost", 50001);
+		oos = new ObjectOutputStream(socket.getOutputStream());
+		ois = new ObjectInputStream(socket.getInputStream());
 	}
 	// 메시지 수신 기능을 별도 스레드에서 처리
 
-	public void receive() {
-		Thread thread = new Thread(() -> {
+	
+	// 닉네임 짓기(중복검사 -> ChatSocket, ChatServer)
+	public void createNickName() {
+		while(true) {
+			System.out.print("닉네임 : ");
+			String name = scanner.nextLine();
 			try {
-				ois = new ObjectInputStream(socket.getInputStream());
+				oos.writeObject(new Message(name));
+				oos.flush();
+				Message msg = (Message)ois.readObject();
+				if(msg.message.equals("사용 가능한 닉네임")) {
+					nickName = name;
+					oos.writeObject(new Message(name, "님이 입장하셨습니다."));
+					oos.flush();
+					break;
+				} else {
+					System.out.println("이미 사용중인 대화명입니다. 다른 닉네임을 지어주세요.");
+					continue;
+				}
+			} catch (IOException | ClassNotFoundException e) {
+				
+			}
+		}
+		
+	}
+	
+	
+	public void receive() {
+		receiveThread = new Thread(() -> {
+			try {
+				
 				while(true) {
 					Message msg = (Message) ois.readObject();
 					String targetUser = msg.targetUser;
@@ -44,7 +74,8 @@ public class ChatClient {
 			} catch (IOException e) {
 			} catch (ClassNotFoundException e) {} 
 		});
-		thread.start();
+		receiveThread.setDaemon(true);
+		receiveThread.start();
 	}
 	
 	// 귓속말 전환 메소드
@@ -90,13 +121,15 @@ public class ChatClient {
 		try {
 			// 서버 연결
 			cc.connectToServer();
-			cc.oos = new ObjectOutputStream(cc.socket.getOutputStream());
 			System.out.println("서버에 접속했습니다. 채팅룸에서 사용할 이름을 지어주세요.");
-			System.out.print("대화명 : ");
-			cc.nickName = scanner.nextLine();
-			// 첫 입장, 다른 이용자들에게 닉네임과 입장 알림
-			cc.oos.writeObject(new Message(cc.nickName, "님이 입장하셨습니다."));
-			// 채팅방 입장 후 타 유저의 메시지 수신 시작
+			System.out.println("** 기능키 : \"/귓속말\", \"/전체말\" **");
+			cc.createNickName();
+			
+			//			System.out.print("대화명 : ");
+//			cc.nickName = scanner.nextLine();
+//			// 첫 입장, 다른 이용자들에게 닉네임과 입장 알림
+//			cc.oos.writeObject(new Message(cc.nickName, "님이 입장하셨습니다."));
+//			// 채팅방 입장 후 타 유저의 메시지 수신 시작
 			cc.receive();
 
 			//채팅방 입장 후 메시지 발송 시작
@@ -112,6 +145,7 @@ public class ChatClient {
 				cc.oos.flush();
 			}
 			cc.disconnectServer();
-		} catch(IOException e) {}
+		} catch(IOException e) {
+		}
 	}
 }
