@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<comment>Oracle SQL Info</comment>
+<entry key="selectTarget">SELECT * FROM CLIENT WHERE NICKNAME = ?</entry>
+<entry key="selectTarget2">SELECT * FROM CLIENT WHERE NICKNAME = ? AND PASSWORD = ?</entry>
+<entry key="insertClient">INSERT INTO CLIENT(NICKNAME, PASSWORD) VALUES(?, ?)</entry>
+<entry key="selectAll">SELECT * FROM CLIENT</entry>
+</properties>
